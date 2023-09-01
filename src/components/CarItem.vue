@@ -1,4 +1,5 @@
 <script setup>
+    import { defineProps } from 'vue';
     const props = defineProps({
         car: {
             type: Object,
@@ -9,15 +10,17 @@
 
 <template>
     <div class="car">
-      <img :src="props.image" alt="car" />
-      <h2>{{ props.brand }}</h2>
-      <p>Цена: {{ props.price }}</p>
-      <p>Год выпуска: {{ props.year }}</p>
-      <p>Объем двигателя: {{ props.volume }}</p>
-      <p>Цвет: {{ props.color }}</p>
+      <img :src="props.car.image" alt="car" />
+      <h2>{{ props.car.brand }}</h2>
+      <p>Цена: {{ props.car.price }}</p>
+      <p>Год выпуска: {{ props.car.year }}</p>
+      <p>Объем двигателя: {{ props.car.volume }}</p>
+      <p>Цвет: {{ props.car.color }}</p>
     </div>
   </template>
 
 <style scoped>
-
+    .car img {
+        width: 10%;
+    }
 </style>
