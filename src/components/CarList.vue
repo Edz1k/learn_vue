@@ -30,13 +30,19 @@
 </script>
 
 <template>
-    <section class="cars" v-for="car in carsArray" :key="car">
-        <div><CarItem :car="car"/></div>   
+    <section class="carr">
+        <section class="cars" v-for="car in carsArray" :key="car">
+            <CarItem :car="car"/>  
+        </section>
     </section>
 </template>
 
 <style scoped>
+    .carr {
+        display: flex;
+        justify-content: center;
+    }
     .cars {
-        width: 33%;
+        flex-basis: 30%;
     }
 </style>
