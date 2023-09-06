@@ -1,12 +1,43 @@
 <script setup>
-    import ButtonDelete from '@/components/ButtonDelete.vue'
     import CarList from './components/CarList.vue';
+    import CarTable from './components/CarTable.vue';
+    import Navbar from './components/Layouts/Navbar.vue';
+
     
+    
+    const cars = [
+        {
+            brand: "BMW",
+            price: "1000000",
+            year: 1994,
+            volume: 2.4,
+            color: "#FF0000",
+            image: "https://www.solido.com/wp-content/uploads/2020/12/s1803904-bmw-e36-coupe-m3-red-1994-01.jpg",
+        },
+        {
+            brand: "BMW",
+            price: "2000000",
+            year: 1994,
+            volume: 2.4,
+            color: "#ff0000",
+            image: "https://www.solido.com/wp-content/uploads/2020/12/s1803904-bmw-e36-coupe-m3-red-1994-01.jpg",
+        },
+        {
+            brand: "BMW",
+            price: "2000000",
+            year: 1994,
+            volume: 2.4,
+            color: "#ff0000",
+            image: "https://www.solido.com/wp-content/uploads/2020/12/s1803904-bmw-e36-coupe-m3-red-1994-01.jpg",
+        },
+    ];
+
 </script>
 
 <template>
-    <ButtonDelete/>
-    <CarList/>
+    <Navbar/>
+    <CarList :cars="cars"/>
+    <CarTable :cars="cars"/>
 </template>
 
 
