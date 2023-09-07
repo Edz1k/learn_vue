@@ -1,7 +1,8 @@
 <script setup>
     import CarList from './components/CarList.vue';
     import CarTable from './components/CarTable.vue';
-    import Navbar from './components/Layouts/Navbar.vue';
+    import SideBarMenu from './components/Sidebar/ButtonOpen.vue';
+    // import Navbar from './components/Layouts/NavBar.vue';
 
     
     
@@ -35,7 +36,8 @@
 </script>
 
 <template>
-    <Navbar/>
+    <!-- <Navbar/> -->
+    <SideBarMenu/>
     <CarList :cars="cars"/>
     <CarTable :cars="cars"/>
 </template>

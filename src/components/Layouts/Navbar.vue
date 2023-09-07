@@ -2,10 +2,9 @@
     <button type="button" class="p-link p-ml-auto" @click="googleRegister">
       <i class="pi pi-user"></i>
     </button>
-  </template>
+</template>
   
 <script setup>
-  import Button from 'primevue/button'
   import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
   
   const googleRegister = () => {
