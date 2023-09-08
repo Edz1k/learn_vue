@@ -7,7 +7,7 @@
     
     
     
-    const cars = [
+    const carsArray = [
         {
             brand: "BMW",
             price: "1000000",
@@ -48,8 +48,8 @@
 <template>
     <Navbar/>
     <SideBarMenu/>
-    <CarList :cars="cars"/>
-    <CarTable :cars="cars"/>
+    <CarList :cars="carsArray"/>
+    <CarTable :cars="carsArray"/>
     <ToasTer/>
 </template>
 

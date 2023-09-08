@@ -2,11 +2,24 @@
     <button type="button" class="p-link p-ml-auto" @click="googleRegister">
       <i class="pi pi-user"></i>
     </button>
+    <button type="button" class="p-link p-ml-auto" @click="createAuto">
+      <i class="pi pi-plus"></i>
+    </button>
 </template>
   
 <script setup>
   import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+  // import button from 'primevue/button';
+  import { onMounted } from 'vue';
+  import { useAuto } from '@/Composable/useAuto.js';
   
+  const {auto,createAuto} = useAuto()
+  console.log(auto);
+
+  onMounted(async () => {
+    await createAuto()
+  })
+
   const googleRegister = () => {
     const auth = getAuth()
     const provider = new GoogleAuthProvider()

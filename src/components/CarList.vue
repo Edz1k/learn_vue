@@ -12,7 +12,7 @@
 
 <template>
     <section class="carr">
-        <section class="cars" v-for="car in carsArray" :key="car">
+        <section class="cars" v-for="car in cars" :key="car">
             <CarItem :car="car"/>  
         </section>
     </section>
