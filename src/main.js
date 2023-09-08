@@ -6,6 +6,8 @@ import PrimeVue from 'primevue/config';
 import 'primeicons/primeicons.css';
 import 'primevue/resources/themes/soho-dark/theme.css'
 import { initializeApp } from "firebase/app";
+import ToastService from 'primevue/toastservice';
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyBQHSBTFOeBP1YjT2LUWrYyAeF0VGhG-FM",
@@ -20,4 +22,5 @@ initializeApp(firebaseConfig);
 
 const app = createApp(App)
 app.use(PrimeVue)
+app.use(ToastService)
 app.mount('#app')
