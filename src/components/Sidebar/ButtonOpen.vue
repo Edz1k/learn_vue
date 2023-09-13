@@ -1,5 +1,5 @@
 <template>
-    <div class="card flex justify-content-center">
+    <div class="card flex justify-content-center side-bar">
         <Sidebar v-model:visible="visible">
             <h3 class="first">Make your Choice</h3>
             <div class="informMenu">
@@ -50,4 +50,11 @@
     .informMenu > span {
         margin-top: 25px;
     }
+    /* .side-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        height: 100%;
+    } */
 </style>

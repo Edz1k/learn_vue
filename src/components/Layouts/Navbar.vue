@@ -10,15 +10,10 @@
 <script setup>
   import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
   // import button from 'primevue/button';
-  import { onMounted } from 'vue';
+
   import { useAuto } from '@/Composable/useAuto.js';
   
-  const {auto,createAuto} = useAuto()
-  console.log(auto);
-
-  onMounted(async () => {
-    await createAuto()
-  })
+  const {createAuto} = useAuto()
 
   const googleRegister = () => {
     const auth = getAuth()
