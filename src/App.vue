@@ -3,6 +3,7 @@
     import CarTable from './components/CarTable.vue';
     import Navbar from './components/Layouts/NavBar.vue';
     import ToasTer from  './components/ToasTer.vue';
+    import FooterInitial from './components/FooterInitial.vue';
 </script>
 
 <template>
@@ -10,6 +11,7 @@
     <CarList/>
     <CarTable/>
     <ToasTer/>
+    <FooterInitial/>
 </template>
 
 

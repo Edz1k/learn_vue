@@ -20,7 +20,7 @@
                         <label for="year">Тип двигателя</label>
                         <Dropdown v-model="newAuto.engine" :options="engineType" optionLabel="name"/>
                     </div>
-                    <div class="p-field" v-if="newAuto.engine !== 'Electro'">
+                    <div class="p-field" v-if="newAuto.engine.name !== 'Electro'">
                         <label for="volume">Объем</label>
                         <InputText id="volume" v-model="newAuto.volume" />
                     </div>
@@ -41,7 +41,7 @@
                         <Dropdown v-model="newAuto.carcase" :options="carCases" optionValue="name" optionLabel="name" />
                     </div>
                     <div class="p-field radios">
-                        <label for="gear">Коробка</label>
+                        <label for="gear">Коробка: </label>
                         <div v-for="category in categories" :key="category.key" class="">
                             <RadioButton v-model="newAuto.gear" :inputId="category.key" name="pizza" :value="category.name" />
                             <label :for="category.key" class="ml-2">{{ category.name }}</label>
