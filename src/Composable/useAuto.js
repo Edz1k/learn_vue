@@ -20,8 +20,9 @@ export const useAuto = () => {
       carcase: '',
       gear: '',
       travel: '',
-      images: 0,
+      image: '',
   });
+  
   // eslint-disable-next-line no-unused-vars
   const autoList = ref([]);
   const auto = ref(null)
@@ -33,13 +34,13 @@ export const useAuto = () => {
   })
   const autoListRemake = computed(() => {
     const _autoListRemake = autoList.value.map((auto) => {
-        auto.price = `${parseInt(auto.price)} KZT`;
-        auto.volume = `${auto.volume} л`;
-        auto.travel = `${auto.travel} км`;
-        auto.age = `${new Date().getFullYear() - auto.year}г`;
-        auto.color = `#${auto.color}`;  
-        auto.year = formatDate(auto.year);
-        return auto;
+      auto.year = formatDate(auto.year);
+      auto.price = `${parseInt(auto.price)} KZT`;
+      auto.volume = `${auto.volume} л`;
+      auto.travel = `${auto.travel} км`;
+      auto.age = `${new Date().getFullYear() - auto.year}г`;
+      auto.color = `#${auto.color}`;  
+      return auto;
     });
     return _autoListRemake || [];
   });
@@ -58,7 +59,9 @@ export const useAuto = () => {
       }
   
   }
+  // async function UploadImage(){
 
+  // }
   async function getAutoList() {
     loading.value.autoList = true
     try {

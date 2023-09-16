@@ -1,18 +1,17 @@
 <script setup>
     import CarItem from '@/components/CarItem.vue';
-    import { defineProps } from 'vue';
+    import { onMounted } from 'vue';
+    import {useAuto} from '@/Composable/useAuto.js';
 
-    defineProps({
-        cars: {
-            type: Array,
-            required: true,
-        },
+    const {autoListRemake, getAutoList} = useAuto();
+    onMounted(async() => {
+        await getAutoList();
     });
 </script>
 
 <template>
     <section class="carr">
-        <section class="cars" v-for="car in cars" :key="car">
+        <section class="cars" v-for="car in autoListRemake" :key="car">
             <CarItem :car="car"/>  
         </section>
     </section>
@@ -22,8 +21,10 @@
     .carr {
         display: flex;
         justify-content: center;
+        flex-wrap: wrap;
     }
     .cars {
-        flex-basis: 30%;
+        flex-basis: 26%;
+        margin: 35px;
     }
 </style>

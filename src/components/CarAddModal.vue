@@ -24,13 +24,13 @@
                         <label for="volume">Объем</label>
                         <InputText id="volume" v-model="newAuto.volume" />
                     </div>
-                    <div class="p-field">
-                        <label for="color">Цвет</label>
-                        <InputText id="color" v-model="newAuto.color" />
+                    <div class="p-field colorPick">
+                        <label for="color" class="colorPick">Цвет</label>
+                        <ColorPicker id="color" v-model="newAuto.color" />
                     </div>
                     <div class="p-field">
                         <label for="saled">Продано</label>
-                        <InputText id="saled" v-model="newAuto.saled" />
+                        <Dropdown v-model="newAuto.saled" :options="saled" optionValue="code" optionLabel="name" />
                     </div>
                     <div class="p-field">
                         <label for="city">Город</label>
@@ -38,11 +38,11 @@
                     </div>
                     <div class="p-field">
                         <label for="carcase">Кузов</label>
-                        <InputText id="carcase" v-model="newAuto.carcase" />
+                        <Dropdown v-model="newAuto.carcase" :options="carCases" optionValue="name" optionLabel="name" />
                     </div>
-                    <div class="p-field">
+                    <div class="p-field radios">
                         <label for="gear">Коробка</label>
-                        <div v-for="category in categories" :key="category.key" class="flex align-items-center">
+                        <div v-for="category in categories" :key="category.key" class="">
                             <RadioButton v-model="newAuto.gear" :inputId="category.key" name="pizza" :value="category.name" />
                             <label :for="category.key" class="ml-2">{{ category.name }}</label>
                         </div>
@@ -52,11 +52,15 @@
                         <InputText v-model.number="newAuto.travel" class="w-full" />
                         <Slider v-model="newAuto.travel" class="w-full" :max="200000"/>
                     </div>
+                    <div class="p-field">
+                        <label for="image">Картинка</label>
+                        <FileUpload v-model="newAuto.image" mode="basic" accept="image/*" :maxFileSize="10000000" @select="onUpload" />
+                    </div>
                 </div>
            </template>
             <template #footer>
                 <Button label="Сбросить" icon="pi pi-times" @click="clearData" text />
-                <Button label="Добавить" icon="pi pi-check" @click="addAuto" autofocus />
+                <Button label="Добавить" icon="pi pi-check" @click="addAuto" autofocus></Button>
             </template>
         </Dialog>
     </div>
@@ -73,8 +77,13 @@
     import Calendar from "primevue/calendar";
     import Slider from 'primevue/slider';
     import RadioButton from 'primevue/radiobutton';
+    import ColorPicker from "primevue/colorpicker";
+    import FileUpload from 'primevue/fileupload';
     const {createAuto, newAuto, clear} = useAuto();
+    import { useToast } from 'primevue/usetoast';
 
+    const toast = useToast();
+    
 
     const visible = ref(false);
     const toggleVisible = () =>{
@@ -83,8 +92,17 @@
 
     const addAuto = async () => {
         await createAuto(newAuto.value);
+        showSuccess();
         toggleVisible();
     }
+
+    const showSuccess = () => {
+        if (newAuto.value && newAuto.value.brand) {
+            toast.add({ severity: 'success', summary: 'Car Added', detail: `Brand ${newAuto.value.brand}`, life: 3000 });
+        } else {
+            toast.add({ severity: 'error', summary: 'Error', detail: 'Car brand is undefined' });
+        }
+    };
     const clearData = () => {
         clear();
         toggleVisible();
@@ -115,5 +133,37 @@
         { name: 'Lexus' },
         { name: 'Toyota' }
     ]);
+    const saled = ref([
+        { name: 'Да', code: true },
+        { name: 'Нет', code: false }
+    ]);
+    const carCases = ref([
+        { name: 'Седан' },
+        { name: 'Хэтчбек' },
+        { name: 'Универсал' },
+        { name: 'Купе' },
+        { name: 'Кабриолет' },
+        { name: 'Лимузин' },
+        { name: 'Пикап' },
+        { name: 'Внедорожник' },
+        { name: 'Минивэн' },
+        { name: 'Микроавтобус' },
+        { name: 'Фургон' },
+        { name: 'Другой' }
+    ]);
 </script>
-  
+<style scoped>  
+    .colorPick {
+        padding-right: 20px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+    .p-field {
+        margin-bottom: 20px;
+    }
+    .radios {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+</style>

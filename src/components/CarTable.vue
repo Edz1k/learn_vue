@@ -1,7 +1,15 @@
 <template>
     <DataTable :value="autoListRemake" :loading="loading.autoListRemake">
       <Column v-for="column in carColumns" :key="column.field" :field="column.field" :header="column.header">
-        
+        <template #body="slotProps">
+          <span v-if="column.field === 'saled'">
+            <Checkbox v-model="slotProps.data.saled" binary checked readonly/>
+          </span>
+          <span v-else-if="column.field === 'color'">
+            <ColorPicker v-if="slotProps.data[column.field]" v-model="slotProps.data[column.field]" disabled=""/>
+          </span>
+          <span v-else>{{ slotProps.data[column.field] }}</span>
+        </template>
       </Column>
     </DataTable>
   </template>
@@ -12,6 +20,8 @@
     import DataTable from 'primevue/datatable';
     import Column from 'primevue/column';
     import {useAuto} from '@/Composable/useAuto.js';
+    import Checkbox from 'primevue/checkbox';
+    import ColorPicker from 'primevue/colorpicker';
     
     const { autoListRemake, getAutoList, loading } = useAuto();
     
@@ -34,5 +44,10 @@
       { field: 'travel', header: 'Пробег' },
     ]
   </script>
+<style scoped>
+:deep(.p-disabled){
+  opacity: 1 !important;
+};
+</style>
 
   
