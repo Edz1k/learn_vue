@@ -2,9 +2,12 @@
 import { collection, getDocs, addDoc } from 'firebase/firestore'
 import { db } from '@/firebases'
 // eslint-disable-next-line no-unused-vars
-import { getStorage, uploadBytes, getDownloadURL } from 'firebase/storage'
+import { getStorage, uploadBytes, getDownloadURL } from 'firebase/storage';
+import * as firebase from 'firebase/storage'
 import { computed, ref } from 'vue'
 import { createId, formatDate } from '@/services/method.js';
+
+
 export const useAuto = () => {
     // eslint-disable-next-line no-unused-vars
     const newAuto = ref({
@@ -31,6 +34,7 @@ export const useAuto = () => {
     auto: false,
     autoList: false,
     newAuto: false,
+    fileUpload: false,
   })
   const autoListRemake = computed(() => {
     const _autoListRemake = autoList.value.map((auto) => {
@@ -59,9 +63,31 @@ export const useAuto = () => {
       }
   
   }
-  // async function UploadImage(){
+  
+  async function uploadImage(file) {
+    console.log(file)
+    const storage = getStorage()
+    console.log(storage)
+    const storageRef = firebase.ref(storage, 'autos/' + file.name)
+    console.log(storageRef)
 
-  // }
+    uploadBytes(storageRef, file)
+      .then(() => {
+        console.log('Файл успешно загружен!')
+
+        getDownloadURL(storageRef)
+          .then((downloadURL) => {
+            newAuto.value.image = downloadURL
+          })
+          .catch((error) => {
+            console.error('Ошибка получения ссылки на загруженный файл:', error)
+          })
+      })
+      .catch((error) => {
+        console.error('Ошибка загрузки файла:', error)
+      })
+  }
+  
   async function getAutoList() {
     loading.value.autoList = true
     try {
@@ -98,6 +124,7 @@ export const useAuto = () => {
     createAuto,
     clear,
     getAutoList,
+    uploadImage,
     newAuto,
     auto,
     autoListRemake,

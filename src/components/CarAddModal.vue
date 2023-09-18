@@ -49,12 +49,12 @@
                     </div>
                     <div class="p-field">
                         <label for="travel">Пробег</label>
-                        <InputText v-model.number="newAuto.travel" class="w-full" />
+                        <InputText v-model.number="newAuto.travel" class="w-full" :required="true" />
                         <Slider v-model="newAuto.travel" class="w-full" :max="200000"/>
                     </div>
                     <div class="p-field">
                         <label for="image">Картинка</label>
-                        <FileUpload v-model="newAuto.image" mode="basic" accept="image/*" :maxFileSize="10000000" @select="onUpload" />
+                        <FileUpload v-model="newAuto.image" enctype="multipart/form-data" mode="basic" accept="image/*" :maxFileSize="10000000" @input="onUpload"/>
                     </div>
                 </div>
            </template>
@@ -79,8 +79,8 @@
     import RadioButton from 'primevue/radiobutton';
     import ColorPicker from "primevue/colorpicker";
     import FileUpload from 'primevue/fileupload';
-    const {createAuto, newAuto, clear} = useAuto();
     import { useToast } from 'primevue/usetoast';
+    const {createAuto, newAuto, clear, uploadImage} = useAuto();
 
     const toast = useToast();
     
@@ -95,7 +95,11 @@
         showSuccess();
         toggleVisible();
     }
-
+    async function onUpload(e) {
+        const image = e.target.files[0]
+        
+        await uploadImage(image)
+    }
     const showSuccess = () => {
         if (newAuto.value && newAuto.value.brand) {
             toast.add({ severity: 'success', summary: 'Car Added', detail: `Brand ${newAuto.value.brand}`, life: 3000 });
@@ -103,6 +107,7 @@
             toast.add({ severity: 'error', summary: 'Error', detail: 'Car brand is undefined' });
         }
     };
+    
     const clearData = () => {
         clear();
         toggleVisible();
