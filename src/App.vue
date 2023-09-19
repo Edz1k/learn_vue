@@ -1,20 +1,18 @@
 <script setup>
-    import CarList from './components/CarList.vue';
-    import CarTable from './components/CarTable.vue';
     import Navbar from './components/Layouts/NavBar.vue';
     import ToasTer from  './components/ToasTer.vue';
     import FooterInitial from './components/FooterInitial.vue';
+    import { RouterView } from 'vue-router';
 </script>
 
 <template>
     <Navbar/>
-    <CarList/>
-    <CarTable/>
+    <RouterView/>
     <ToasTer/>
     <FooterInitial/>
 </template>
 
 
-<style>
+<style scoped>
 
 </style>

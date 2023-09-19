@@ -1,16 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router';
  
 const router = createRouter({ 
-  history: createWebHistory(import.meta.env.BASE_URL), 
+  history: createWebHistory(import.meta.env), 
   routes: [ 
     { 
       path: '/table', 
       name: 'table', 
-      component: ()=> import('../views/CardsPage.vue') 
+      component: ()=> import('../views/TablePage.vue') 
     },
     { 
-        path: '/cars', 
-        name: 'cars', 
+        path: '/cards', 
+        name: 'cards', 
         component: ()=> import('../views/CardsPage.vue') 
     },
     { 
