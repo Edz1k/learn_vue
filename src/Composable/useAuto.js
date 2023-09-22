@@ -63,7 +63,22 @@ export const useAuto = () => {
       }
   
   }
-  
+  async function getAuto(id) {
+    loading.value.auto = true;
+    try {
+      const querySnapshot = await getDocs(collection(db, 'autos'))
+      querySnapshot.forEach((doc) => {
+        if (doc.data().id === id) {
+          auto.value = doc.data()
+        }
+      })
+    } catch (e) {
+      console.error('Error: ', e)
+    } finally {
+      loading.value.auto = false;
+    }
+  }
+
   async function uploadImage(file) {
     console.log(file)
     const storage = getStorage()
@@ -74,9 +89,9 @@ export const useAuto = () => {
     uploadBytes(storageRef, file)
       .then(() => {
         console.log('Файл успешно загружен!')
-
         getDownloadURL(storageRef)
           .then((downloadURL) => {
+
             newAuto.value.image = downloadURL
           })
           .catch((error) => {
@@ -125,6 +140,7 @@ export const useAuto = () => {
     clear,
     getAutoList,
     uploadImage,
+    getAuto,
     newAuto,
     auto,
     autoListRemake,

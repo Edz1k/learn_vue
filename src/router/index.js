@@ -18,6 +18,16 @@ const router = createRouter({
         name: 'profile', 
         component: ()=> import('../views/ProfilePage.vue') 
     },
+    {
+      path: '/car/:id',
+      name: 'car',
+      component: ()=> import('../views/CarPage.vue')
+    },
+    { 
+      path: '/toasts', 
+      name: 'toasts', 
+      component: ()=> import('../views/ToasterPage.vue') 
+  },
     { 
         path: '/:pathMatch(.*)*', 
         name: 'not-found', 
