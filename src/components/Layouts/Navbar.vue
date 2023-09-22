@@ -3,7 +3,7 @@
       <Menubar :model="items">
         <template #start>
           <SidebarMenu/>
-        </template> 
+        </template>
         <template #end>
           <div class="rightSide">
             <CarAddModal class="CarAddModal"/>
@@ -20,17 +20,16 @@
 <script setup>
   import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
   import {ref} from 'vue';
-  import { useAuto } from '@/Composable/useAuto.js';
   import Menubar from 'primevue/menubar';
   import Button from 'primevue/button';
   import SidebarMenu from '@/components/Sidebar/ButtonOpen.vue';
   import CarAddModal from '@/components/CarAddModal.vue';
-  const {auto} = useAuto()
-  console.log(auto,ref)
+
+  
   const items = ref([
-    {label: 'Home', icon: 'pi pi-fw pi-home'},
-    {label: 'About', icon: 'pi pi-fw pi-question'},
-    {label: 'Contact', icon: 'pi pi-fw pi-envelope'},
+    {label: 'Cards', icon: 'pi pi-fw pi-home', to: '/cards'},
+    {label: 'Table', icon: 'pi pi-fw pi-table', to: '/table'},
+    {label: 'Toasters', icon: 'pi pi-fw pi-envelope', to: '/toasts'},
     {label: 'Documentation', icon: 'pi pi-fw pi-file'},
     {label: 'Settings', icon: 'pi pi-fw pi-cog'}
     

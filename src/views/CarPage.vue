@@ -1,9 +1,14 @@
 <template>
     <div v-if="!auto">
-        <Skeleton width="100vh" class="mb-2"></Skeleton>
+        <Skeleton width="100vw"></Skeleton>
     </div>
     <div v-if="auto">
-        {{ auto.brand }}
+        <div> {{ auto.brand }} </div>
+        <div> {{ auto.price }} </div>
+        <div> {{ auto.year }} </div>
+        <div> {{ auto.color }} </div>
+        <div> {{ auto.city }} </div>
+        <div> {{ auto.gear }} </div>
     </div>
   </template>
   
