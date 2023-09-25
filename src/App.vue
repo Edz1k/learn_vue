@@ -1,6 +1,6 @@
 <script setup>
-    import Navbar from './components/Layouts/NavBar.vue';
-    import FooterInitial from './components/FooterInitial.vue';
+    import Navbar from '@/components/Layouts/NavBar.vue';
+    import FooterInitial from '@/components/FooterInitial.vue';
     import { RouterView } from 'vue-router';
 </script>
 
