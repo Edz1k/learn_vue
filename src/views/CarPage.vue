@@ -3,12 +3,23 @@
         <Skeleton width="100vw"></Skeleton>
     </div>
     <div v-if="auto">
-        <div> {{ auto.brand }} </div>
-        <div> {{ auto.price }} </div>
-        <div> {{ auto.year }} </div>
-        <div> {{ auto.color }} </div>
-        <div> {{ auto.city }} </div>
-        <div> {{ auto.gear }} </div>
+        <Card style="width: 25em">
+            <template #header>
+                <img :src="auto.image" alt="car" class="car-image" />
+            </template>
+            <template #title> {{auto.brand}}</template>
+            <template #subtitle> {{auto.price}} </template>
+            <template #content>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
+                    quas!
+                </p>
+            </template>
+            <template #footer>
+                <Button icon="pi pi-heart-fill" label="Like" />
+                <Button icon="pi pi-thumbs-down-fill" label="Dislike" severity="secondary" style="margin-left: 0.5em" />
+            </template>
+        </Card>    
     </div>
   </template>
   
@@ -17,6 +28,8 @@
     import { onMounted } from 'vue';
     import { useRoute } from 'vue-router';   // optional
     import Skeleton  from 'primevue/skeleton';
+    import Card from 'primevue/card';
+    import Button from 'primevue/button';
   
   const route = useRoute();
   
@@ -30,4 +43,12 @@
     }
     });
   </script>
-  
+<style scoped>
+    .car-image{
+        width: 100%;
+    }
+    .p-card{
+        margin: 0 auto;
+        margin-top: 20px;;
+    }
+</style>
